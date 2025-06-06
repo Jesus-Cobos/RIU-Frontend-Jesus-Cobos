@@ -1,0 +1,43 @@
+<div class="form-container">
+  <div class="header">
+    <h1 class="primary-color">{{ title() }}</h1>
+    <p class="subtitle">Complete los datos del héroe</p>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="hero-form">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>ID de Héroe</mat-label>
+      <input matInput id="id" formControlName="id" placeholder="Ej: 12345" />
+      <mat-icon matPrefix>numbers</mat-icon>
+      <mat-error *ngIf="form.get('id')?.hasError('required') && form.get('id')?.touched">
+        El ID es requerido
+      </mat-error>
+      <mat-error *ngIf="form.get('id')?.hasError('pattern') && form.get('id')?.touched">
+        Solo se permiten números
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Nombre de Héroe</mat-label>
+      <input customUppercase matInput id="name" formControlName="name" placeholder="Ej: Superman" />
+      <mat-icon matPrefix>badge</mat-icon>
+      <mat-error *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched">
+        El nombre es requerido
+      </mat-error>
+      <mat-error *ngIf="form.get('name')?.hasError('pattern') && form.get('name')?.touched">
+        Solo se permiten letras
+      </mat-error>
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-stroked-button color="primary" type="button" (click)="goToHome()" class="back-button">
+        <mat-icon>arrow_back</mat-icon>
+        Volver al listado
+      </button>
+      <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid" class="submit-button">
+        <mat-icon>save</mat-icon>
+        Guardar Héroe
+      </button>
+    </div>
+  </form>
+</div>
