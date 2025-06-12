@@ -19,7 +19,7 @@
 
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Nombre de Héroe</mat-label>
-      <input matInput id="name" formControlName="name" placeholder="Ej: Superman" />
+      <input customUppercase matInput id="name" formControlName="name" placeholder="Ej: Superman" />
       <mat-icon matPrefix>badge</mat-icon>
       <mat-error *ngIf="form.get('name')?.hasError('required') && form.get('name')?.touched">
         El nombre es requerido
