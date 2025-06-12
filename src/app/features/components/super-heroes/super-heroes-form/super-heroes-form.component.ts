@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SuperHeroesService } from '../../../../core/services/super-heroes.service';
 import { MatIcon } from '@angular/material/icon';
+import { UppercaseDirective } from '../../../shared/directives/uppercase.directive';
 
 
 @Component({
@@ -21,7 +22,9 @@ import { MatIcon } from '@angular/material/icon';
     MatButtonModule,
     MatSnackBarModule,
     MatIcon,
-    RouterModule],
+    RouterModule,
+    UppercaseDirective
+  ],
   templateUrl: './super-heroes-form.component.html',
   styleUrl: './super-heroes-form.component.scss'
 })
@@ -53,7 +56,7 @@ export class SuperHeroesFormComponent {
 
   setForm() {
     const id = this.heroId();
-    const name = this.heroName();
+    const name = this.heroName().toUpperCase();
     this.form.setValue({
       id: id || '',
       name: name || '',
@@ -68,6 +71,7 @@ export class SuperHeroesFormComponent {
         if (data) {
           this.heroName.set(data.name);
           this.heroId.set(data.id);
+          this.setForm();
         }
       });
     }

@@ -53,16 +53,13 @@ describe('SuperHeroesFormComponent', () => {
   it('should call getHeroId and set the form for editing hero', () => {
     const heroId = 1;
     const heroData = { id: 1, name: 'Spiderman' };
-
     superHeroesService.getHeroeById.and.returnValue(of(heroData));
-
-    component.getHeroId();
+    component.ngOnInit();
     fixture.detectChanges();
-
     expect(component.isEditMode).toBeTrue();
     expect(component.heroName()).toBe('Spiderman');
     expect(component.heroId()).toBe(1);
-    expect(component.form.value.name).toBe('Spiderman');
+    expect(component.form.value.name).toBe('SPIDERMAN');
   });
 
   it('should set title to "Edición de superhéroes" in edit mode', () => {
